@@ -4,10 +4,12 @@ const UserInput = (props) => {
   return (
     <div>
       <input
+        value={props.location}
         className="input"
         type="text"
         placeholder="Enter location"
-        onKeyDown={props.userInputHandler}
+        onChange={props.userInputHandler}
+        onKeyDown={props.userEnterInput}
       />
     </div>
   );

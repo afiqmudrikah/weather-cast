@@ -5,13 +5,17 @@ import UserInput from "./UserInput";
 const NavBar = (props) => {
   return (
     <div className="header">
-      <h1>WeatherCast</h1>
+      <h1>WeatherCast {props.location}</h1>
       <ul>
         <li>
           <Link to="/">Current</Link>
         </li>
         <li>
-          <UserInput userInputHandler={props.userInputHandler} />
+          <UserInput
+            userInputHandler={props.userInputHandler}
+            userEnterInput={props.userEnterInput}
+            location={props.location}
+          />
         </li>
 
         <li>
