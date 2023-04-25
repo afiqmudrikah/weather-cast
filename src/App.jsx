@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import SecondPage from "./pages/SecondPage";
+import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar";
+import CurrentWeather from "./components/CurrentWeather";
+import ForecastWeather from "./components/ForecastWeather";
 
 function App() {
+  const [location, setLocation] = useState([]);
+
   const [data, setData] = useState({
     coord: { lon: 103.8501, lat: 1.2897 },
     weather: [
@@ -44,8 +46,8 @@ function App() {
   // Retrieve data from openweathermap API
   // const getData = async () => {
   //   const res = await fetch(
-  //     `https://api.openweathermap.org/data/2.5/weather?q=singapore&units=metric&appid=45829432c54b1befe19b17865424f95c
-  // `
+  // `https://api.openweathermap.org/data/2.5/weather?q=Singapore&units=metric&appid=45829432c54b1befe19b17865424f95c
+  // `;
   //   );
   //   const data = await res.json();
   //   setData(data);
@@ -55,15 +57,22 @@ function App() {
   //   getData();
   // }, []);
 
+  const userInputHandler = (e) => {
+    if (e.key === "Enter") {
+      setLocation(e.target.value);
+    }
+  };
+
   return (
     <>
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/secondpage" element={<SecondPage />} />
-        </Routes>
-      </Router>
+      <NavBar userInputHandler={userInputHandler} />
+      <Routes>
+        <Route
+          path="/"
+          element={<CurrentWeather location={location} data={data} />}
+        />
+        <Route path="/forecast" element={<ForecastWeather />} />
+      </Routes>
     </>
   );
 }

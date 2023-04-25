@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import UserInput from "./UserInput";
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <div className="header">
       <h1>WeatherCast</h1>
@@ -10,10 +11,11 @@ const NavBar = () => {
           <Link to="/">Current</Link>
         </li>
         <li>
-          <input type="text" placeholder="Enter location" />
+          <UserInput userInputHandler={props.userInputHandler} />
         </li>
+
         <li>
-          <Link to="/secondpage">Forecast (5 days)</Link>
+          <Link to="/forecast">Forecast (5 days)</Link>
         </li>
       </ul>
     </div>
