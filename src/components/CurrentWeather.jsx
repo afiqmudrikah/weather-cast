@@ -17,25 +17,25 @@ const CurrentWeather = (props) => {
     <>
       <div className="container">
         <div className="temp-container">
-          <h1>{previousData.name}</h1>
+          <h1>{data.name}</h1>
           <div className="inner-container">
-            <h2>Current temp: {Math.floor(previousData.main.temp)} °C</h2>
-            <p>{previousData.weather[0].main}</p>
-            <img src={prevIconURL} alt="" />
-            <p>Humidity: {previousData.main.humidity} %</p>
-            <p>Wind speed: {previousData.wind.speed} m/sec</p>
+            <h2>Current temp: {Math.floor(data.main.temp)} °C</h2>
+            <p>{data.weather[0].main}</p>
+            <img src={iconURL} alt="" />
+            <p>Humidity: {data.main.humidity} %</p>
+            <p>Wind speed: {data.wind.speed} m/sec</p>
           </div>
         </div>
 
         {containData && (
           <div className="temp-container">
-            <h1>{data.name}</h1>
+            <h1>{previousData.name}</h1>
             <div className="inner-container">
-              <h2>Current temp: {Math.floor(data.main.temp)} °C</h2>
-              <p>{data.weather[0].main}</p>
-              <img src={iconURL} alt="" />
-              <p>Humidity: {data.main.humidity} %</p>
-              <p>Wind speed: {data.wind.speed} m/sec</p>
+              <h2>Current temp: {Math.floor(previousData.main.temp)} °C</h2>
+              <p>{previousData.weather[0].main}</p>
+              <img src={prevIconURL} alt="" />
+              <p>Humidity: {previousData.main.humidity} %</p>
+              <p>Wind speed: {previousData.wind.speed} m/sec</p>
             </div>
           </div>
         )}

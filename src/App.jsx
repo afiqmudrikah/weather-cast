@@ -9,6 +9,11 @@ function App() {
   const [data, setData] = useState("");
   const [previousData, setPreviousData] = useState("");
 
+  const currentWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=45829432c54b1befe19b17865424f95c
+  `;
+
+  const forecastWeatherURL = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metrics&appid=45829432c54b1befe19b17865424f95c`;
+
   // const [data, setData] = useState({
   //   coord: { lon: 103.8501, lat: 1.2897 },
   //   weather: [
@@ -71,32 +76,17 @@ function App() {
   // API call when user inputs a location
   const userEnterInput = async (e) => {
     if (e.key === "Enter" && location !== "") {
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=45829432c54b1befe19b17865424f95c
-  `
-      );
-      // if (res.status === 200) {
-      //   const data = await res.json();
-      //   setData(data);
-      //   setPreviousData(data);
-      //   setLocation("");
-      //   if (previousData) {
-      //     setPreviousData(previousData);
-      //     setLocation("");
-      //   }
-      // } else {
-      //   alert("Invalid country");
-      // }
+      const res = await fetch(currentWeatherURL);
 
+      // 1) OR operator: sets 'previousData' to 'data' if it exists, if not, sets 'previousData' to newData.
+      // 2) Initially 'previousData' will be set to newData, since 'data' will initially be an empty string.
+      // 3) 'data' will always hold the new API response data.
+      // 4) Subsequent calls, 'previousData' will then be set to 'data' since it is not falsy.
       if (res.status === 200) {
-        const data = await res.json();
-        setData(data);
-        setPreviousData(data);
+        const newData = await res.json();
+        setPreviousData(data || newData);
+        setData(newData);
         setLocation("");
-        if (previousData) {
-          setData(previousData);
-          setLocation("");
-        }
       } else {
         alert("Invalid country");
       }
@@ -105,8 +95,8 @@ function App() {
 
   return (
     <>
-      {/* <div>{JSON.stringify(data)}</div>
-      <div>{JSON.stringify(previousData)}</div> */}
+      <div>Data: {JSON.stringify(data.name)}</div>
+      <div>Previous Data: {JSON.stringify(previousData.name)}</div>
       <NavBar
         userInputHandler={userInputHandler}
         userEnterInput={userEnterInput}
@@ -124,7 +114,10 @@ function App() {
               />
             }
           />
-          <Route path="/forecast" element={<ForecastWeather />} />
+          <Route
+            path="/forecast"
+            element={<ForecastWeather location={location} data={data} />}
+          />
         </Routes>
       )}
     </>
