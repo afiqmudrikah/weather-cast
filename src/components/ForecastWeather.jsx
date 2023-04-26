@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
+import styles from "./ForecastWeather.module.css";
 
 const ForecastWeather = (props) => {
-  const [forecastData, setForecastData] = useState("");
-
+  const forecastData = props.forecastData;
   return (
     <>
-      <div className="container">
-        {/* <div>ForecastWeather</div> */}
-        {/* <div>{props.location}</div> */}
+      <div className={styles.container}>
+        <div>
+          {forecastData.list.map((item, idx) => {
+            if (idx % 8 === 0) {
+              return <p>{item.main.temp}</p>;
+            }
+          })}
+        </div>
       </div>
     </>
   );
