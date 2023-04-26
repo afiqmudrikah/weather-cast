@@ -36,6 +36,10 @@
   margin-left: 5rem;
 }
 
+.container {
+  display: flex;
+}
+
 .temp-container {
   height: 750px;
   width: 600px;

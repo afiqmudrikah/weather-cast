@@ -6,7 +6,8 @@ import ForecastWeather from "./components/ForecastWeather";
 
 function App() {
   const [location, setLocation] = useState("");
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
+  const [previousData, setPreviousData] = useState("");
 
   // const [data, setData] = useState({
   //   coord: { lon: 103.8501, lat: 1.2897 },
@@ -74,10 +75,28 @@ function App() {
         `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=45829432c54b1befe19b17865424f95c
   `
       );
+      // if (res.status === 200) {
+      //   const data = await res.json();
+      //   setData(data);
+      //   setPreviousData(data);
+      //   setLocation("");
+      //   if (previousData) {
+      //     setPreviousData(previousData);
+      //     setLocation("");
+      //   }
+      // } else {
+      //   alert("Invalid country");
+      // }
+
       if (res.status === 200) {
         const data = await res.json();
         setData(data);
+        setPreviousData(data);
         setLocation("");
+        if (previousData) {
+          setData(previousData);
+          setLocation("");
+        }
       } else {
         alert("Invalid country");
       }
@@ -86,6 +105,8 @@ function App() {
 
   return (
     <>
+      {/* <div>{JSON.stringify(data)}</div>
+      <div>{JSON.stringify(previousData)}</div> */}
       <NavBar
         userInputHandler={userInputHandler}
         userEnterInput={userEnterInput}
@@ -95,7 +116,13 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<CurrentWeather location={location} data={data} />}
+            element={
+              <CurrentWeather
+                location={location}
+                data={data}
+                previousData={previousData}
+              />
+            }
           />
           <Route path="/forecast" element={<ForecastWeather />} />
         </Routes>
