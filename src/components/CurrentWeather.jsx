@@ -7,6 +7,10 @@ const CurrentWeather = (props) => {
   const iconID = data.weather[0].icon;
   const iconURL = `https://openweathermap.org/img/wn/${iconID}@2x.png`;
 
+  const prevIconID = previousData.weather[0].icon;
+  const prevIconURL = `https://openweathermap.org/img/wn/${prevIconID}@2x.png`;
+
+  // Check if there is new data available
   const containData = data === previousData ? false : true;
 
   return (
@@ -17,7 +21,7 @@ const CurrentWeather = (props) => {
           <div className="inner-container">
             <h2>Current temp: {Math.floor(previousData.main.temp)} °C</h2>
             <p>{previousData.weather[0].main}</p>
-            <img src={iconURL} alt="" />
+            <img src={prevIconURL} alt="" />
             <p>Humidity: {previousData.main.humidity} %</p>
             <p>Wind speed: {previousData.wind.speed} m/sec</p>
           </div>
