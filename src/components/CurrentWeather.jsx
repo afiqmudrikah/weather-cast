@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./CurrentWeather.module.css";
 
 const CurrentWeather = (props) => {
   const data = props.data;
@@ -15,22 +16,22 @@ const CurrentWeather = (props) => {
 
   return (
     <>
-      <div className="container">
-        <div className="temp-container">
+      <div className={styles.container}>
+        <div className={styles["temp-container"]}>
           <h1>{data.name}</h1>
-          <div className="inner-container">
-            <h2>Current temp: {Math.floor(data.main.temp)} °C</h2>
+          <div className={styles["inner-container"]}>
+            <h2>Current temp: {Math.round(data.main.temp)}°C</h2>
             <p>{data.weather[0].main}</p>
-            <img src={iconURL} alt="" />
-            <p>Humidity: {data.main.humidity} %</p>
+            <img src={iconURL} alt="weather icon" />
+            <p>Humidity: {data.main.humidity}%</p>
             <p>Wind speed: {data.wind.speed} m/sec</p>
           </div>
         </div>
 
         {containData && (
-          <div className="temp-container">
+          <div className={styles["temp-container"]}>
             <h1>{previousData.name}</h1>
-            <div className="inner-container">
+            <div className={styles["inner-container"]}>
               <h2>Current temp: {Math.floor(previousData.main.temp)} °C</h2>
               <p>{previousData.weather[0].main}</p>
               <img src={prevIconURL} alt="" />
