@@ -5,20 +5,24 @@
 }
 
 body {
-  background-color: #a2999e;
+  background: #fff url(images/sky.jpg) center center/cover no-repeat;
+  background-color: #c6c7c4;
+  color: #f5f0f6;
 }
 
 h1 {
   font-family: "Lato", sans-serif;
+  text-shadow: 1px 3px 4px rgba(0, 0, 0, 0.6);
 }
 
 .header {
-  height: 8rem;
+  height: 7rem;
   background-color: #c6c7c4;
 }
 
 .header h1 {
   text-align: center;
+  margin-bottom: 0.4rem;
 }
 
 .header a {

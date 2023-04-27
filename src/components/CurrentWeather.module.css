@@ -1,17 +1,27 @@
 .container {
   display: flex;
-  transition: 2s;
+  margin-top: 100px;
 }
 
 .temp-container {
-  height: 750px;
-  width: 600px;
-  background-color: antiquewhite;
-  border: 1px solid black;
+  height: 600px;
+  width: 500px;
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 56px;
   text-align: center;
   margin: 20px auto 0 auto;
   font-size: 1.5rem;
+  animation: container-entrance 0.5s ease 0s 1 normal forwards;
+}
+
+@keyframes container-entrance {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 .temp-container h1 {
@@ -21,7 +31,7 @@
 .inner-container {
   height: 70%;
   width: 80%;
-  background-color: aquamarine;
+  background-color: rgba(0, 0, 0, 0.7);
   border: 1px solid black;
   border-radius: 28px;
   margin: 20px auto 20px auto;

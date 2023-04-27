@@ -20,8 +20,8 @@ const CurrentWeather = (props) => {
         <div className={styles["temp-container"]}>
           <h1>{data.name}</h1>
           <div className={styles["inner-container"]}>
-            <h2>Current temp: {Math.round(data.main.temp)}°C</h2>
-            <p>{data.weather[0].main}</p>
+            <h2>Temperature: {Math.round(data.main.temp)}°C</h2>
+            <h3>{data.weather[0].main}</h3>
             <img src={iconURL} alt="weather icon" />
             <p>Humidity: {data.main.humidity}%</p>
             <p>Wind speed: {data.wind.speed} m/sec</p>
@@ -32,8 +32,8 @@ const CurrentWeather = (props) => {
           <div className={styles["temp-container"]}>
             <h1>{previousData.name}</h1>
             <div className={styles["inner-container"]}>
-              <h2>Current temp: {Math.floor(previousData.main.temp)} °C</h2>
-              <p>{previousData.weather[0].main}</p>
+              <h2>Temperature: {Math.floor(previousData.main.temp)} °C</h2>
+              <h3>{previousData.weather[0].main}</h3>
               <img src={prevIconURL} alt="" />
               <p>Humidity: {previousData.main.humidity} %</p>
               <p>Wind speed: {previousData.wind.speed} m/sec</p>

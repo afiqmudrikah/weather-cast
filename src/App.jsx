@@ -24,30 +24,21 @@ function App() {
     if (e.key === "Enter" && location !== "") {
       const currentRes = await fetch(currentWeatherURL);
       const forecastRes = await fetch(forecastWeatherURL);
-
-      // 1) OR operator: sets 'previousData' to 'data' if it exists, if not, sets 'previousData' to newData.
-      // 2) Initially 'previousData' will be set to newData, since 'data' will initially be an empty string.
-      // 3) 'data' will always hold the new API response data.
-      // 4) Subsequent calls, 'previousData' will then be set to 'data' since it is not falsy.
-      if (currentRes.status === 200) {
+      if (currentRes.status === 200 && forecastRes.status === 200) {
         const newData = await currentRes.json();
+        const newForecastData = await forecastRes.json();
         setPreviousData(data || newData);
         setData(newData);
+        setForecastData(newForecastData);
         setLocation("");
       } else {
         alert("Invalid country");
-      }
-      if (forecastRes.status === 200) {
-        const newForecastData = await forecastRes.json();
-        setForecastData(newForecastData);
       }
     }
   };
 
   return (
     <>
-      {/* <div>Data: {JSON.stringify(data.name)}</div>
-      <div>Previous Data: {JSON.stringify(previousData.name)}</div> */}
       <NavBar
         userInputHandler={userInputHandler}
         userEnterInput={userEnterInput}

@@ -4,15 +4,6 @@ import TextField from "@mui/material/TextField";
 const UserInput = (props) => {
   return (
     <div>
-      {/* <input
-        value={props.location}
-        className="input"
-        type="text"
-        placeholder="Enter location"
-        onChange={props.userInputHandler}
-        onKeyDown={props.userEnterInput}
-      /> */}
-
       <TextField
         label="Enter location"
         value={props.location}
